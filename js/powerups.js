@@ -9,7 +9,7 @@
   }
 
   function dropPowerup(game, brick, offset = game.descentOffset) {
-    game.drops.push({ type: choosePowerup(game.random), x: brick.x + brick.width / 2, y: brick.y + offset + brick.height / 2 });
+    game.drops.push({ type: brick.guaranteedPowerup ?? choosePowerup(game.random), x: brick.x + brick.width / 2, y: brick.y + offset + brick.height / 2 });
   }
 
   function currentSpeed(game) {
@@ -30,13 +30,19 @@
 
   function applyPowerup(game, type) {
     const effect = CONFIG.powerups.effects[type];
+    const product = CONFIG.powerups.products[type];
+    const lifeFull = type === 'life' && game.lives >= CONFIG.maxLives;
     if (type === 'life') game.lives = Math.min(CONFIG.maxLives, game.lives + 1);
     else game.effects[effect.group] = { type, remaining: effect.duration };
     syncEffects(game);
-    game.message = `${effect.label}${type === 'life' ? ' +1' : '生效'}`;
+    const text = product ? `${product.name}｜${lifeFull ? '生命已滿' : product.label}` : `${effect.label}生效`;
+    game.pickupNotice = { type, text, remaining: 2.4, serial: ++game.pickupSerial };
+    game.message = text;
+    if (product) game.chargeEnergy(CONFIG.ultimate.productEnergy);
   }
 
   function tickEffects(game, dt) {
+    if (game.pickupNotice) game.pickupNotice.remaining = Math.max(0, game.pickupNotice.remaining - dt);
     let changed = false;
     for (const [group, effect] of Object.entries(game.effects)) {
       effect.remaining -= dt;
@@ -45,29 +51,33 @@
     if (changed) syncEffects(game);
   }
 
-  function clearEffects(game) { game.effects = {}; syncEffects(game); }
+  function clearEffects(game) { game.effects = {}; game.pickupNotice = null; syncEffects(game); }
+
+  function dropHitbox(type) {
+    return CONFIG.powerups.products[type]?.hitbox || { width: CONFIG.powerups.size, height: CONFIG.powerups.size };
+  }
 
   function updateDrops(game, dt, paddleStartX, paddleEndX) {
-    const size = CONFIG.powerups.size;
     // Solve the interval of vertical overlap, then compare horizontal ranges over
     // that interval. This also catches a fast keyboard sweep under a falling item.
     game.drops = game.drops.filter(drop => {
+      const { width, height } = dropHitbox(drop.type);
       const oldY = drop.y;
       drop.y += CONFIG.powerups.fallSpeed * dt;
       const dy = drop.y - oldY;
-      const enter = clamp((game.paddle.y - size / 2 - oldY) / dy, 0, 1);
-      const exit = clamp((game.paddle.y + game.paddle.height + size / 2 - oldY) / dy, 0, 1);
-      const crosses = drop.y + size / 2 >= game.paddle.y && oldY - size / 2 <= game.paddle.y + game.paddle.height;
+      const enter = clamp((game.paddle.y - height / 2 - oldY) / dy, 0, 1);
+      const exit = clamp((game.paddle.y + game.paddle.height + height / 2 - oldY) / dy, 0, 1);
+      const crosses = drop.y + height / 2 >= game.paddle.y && oldY - height / 2 <= game.paddle.y + game.paddle.height;
       const x1 = paddleStartX + (paddleEndX - paddleStartX) * enter;
       const x2 = paddleStartX + (paddleEndX - paddleStartX) * exit;
-      const half = (game.paddle.width + size) / 2;
+      const half = (game.paddle.width + width) / 2;
       if (crosses && drop.x >= Math.min(x1, x2) - half && drop.x <= Math.max(x1, x2) + half) {
         applyPowerup(game, drop.type);
         return false;
       }
-      return drop.y - size / 2 <= CONFIG.height;
+      return drop.y - height / 2 <= CONFIG.height;
     });
   }
 
-  Object.assign(BB, { choosePowerup, dropPowerup, currentSpeed, syncEffects, applyPowerup, tickEffects, clearEffects, updateDrops });
+  Object.assign(BB, { choosePowerup, dropPowerup, currentSpeed, syncEffects, applyPowerup, tickEffects, clearEffects, updateDrops, dropHitbox });
 })(globalThis.BlockBreaker);

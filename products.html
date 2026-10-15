@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>獎勵道具</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root { color-scheme: dark; font-family: "Segoe UI", "Noto Sans TC", Arial, sans-serif; color: #f8eff5; background: #100d14; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { max-width: 1160px; margin: auto; padding: 30px 24px; }
+    header { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 22px; }
+    .eyebrow { margin: 0; color: #dda4c0; font-size: 12px; letter-spacing: 2px; }
+    h1 { margin: 10px 0; font-size: clamp(26px, 5vw, 34px); }
+    .intro, .note { color: #b9acbc; line-height: 1.75; font-size: 13px; margin: 0; }
+    .products { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    figure { display: flex; flex-direction: column; margin: 0; border: 1px solid #422c3d; border-radius: 15px; background: linear-gradient(145deg, #211522, #15121c); padding: 20px 16px; text-align: center; }
+    .portrait { height: 230px; display: grid; place-items: center; }
+    .portrait img { width: 220px; height: 220px; max-width: 100%; object-fit: contain; }
+    figcaption { margin: 10px 0 14px; font-size: 21px; font-weight: 600; }
+    .effect { margin: 0 0 8px; font-size: 13px; color: #c4b0c4; }
+    .effect b { display: block; margin-top: 5px; color: #ffe2f0; font-size: 17px; font-weight: 600; }
+    .details { flex: 1; margin: 0 0 22px; color: #c4b0c4; font-size: 14px; line-height: 1.75; }
+    .product-link { display: grid; place-items: center; min-height: 44px; padding: 10px 8px; border: 1px solid #422c3d; border-radius: 8px; color: #f8eff5; background: #111216; font-size: 14px; line-height: 1.5; text-decoration: none; }
+    .product-link:focus { color: #17140c; background: #e8be50; border-color: #e8be50; }
+    .product-link:focus-visible { outline: 2px solid #e8be50; outline-offset: 4px; }
+    @media(max-width: 900px) { .products { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media(max-width: 420px) { main { padding: 24px 12px; } .products { gap: 10px; } figure { padding: 14px 10px; } .portrait { height: 160px; } .portrait img { width: 150px; height: 150px; } .product-link { font-size: 12px; } .details { font-size: 13px; } .eyebrow { font-size: 10px; letter-spacing: 1px; } }
+  </style>
+  <script defer src="js/control-selection.js"></script>
+</head>
+<body>
+  <main>
+    <header><div><p class="eyebrow">BLOCK BREAKER · 獎勵道具</p><h1>獎勵道具</h1><p class="intro">接住商品道具，獲得遊戲效果，也能累積 5 點水母能量。</p></div></header>
+    <section class="products" aria-label="四款獎勵道具與官網商品連結">
+      <figure><div class="portrait"><img src="assets/products/ppa-sample-v1.png" alt="PPA 白色按壓瓶遊戲道具" width="1254" height="1254"></div><figcaption>PPA</figcaption><p class="effect">遊戲效果<b>球速減慢</b></p><p class="details">球速降至原本的 70%，<br>持續 8 秒。</p><a class="product-link" href="https://www.012s.com.tw/products/ppa1-%E7%9A%AE%E8%86%9A%E5%95%8F%E9%A1%8C%E5%B0%88%E7%94%A8" target="_blank" rel="noopener noreferrer" aria-label="前往 PPA 官網商品頁（另開分頁）">前往官網商品頁 ↗</a></figure>
+      <figure><div class="portrait"><img src="assets/products/bf01-plus1-sample-v1.png" alt="BF01+1 橘色束口袋遊戲道具" width="1254" height="1254"></div><figcaption>BF01+1</figcaption><p class="effect">遊戲效果<b>球拍加長</b></p><p class="details">球拍寬度變成 1.5 倍，<br>持續 10 秒。</p><a class="product-link" href="https://www.012s.com.tw/products/bf01" target="_blank" rel="noopener noreferrer" aria-label="前往 BF01 官網商品頁（另開分頁）">前往官網商品頁 ↗</a></figure>
+      <figure><div class="portrait"><img src="assets/products/qcc-sample-v1.png" alt="QCC 綠色瓶裝遊戲道具" width="1254" height="1254"></div><figcaption>QCC</figcaption><p class="effect">遊戲效果<b>穿透</b></p><p class="details">球可穿透可破壞磚塊，<br>持續 5 秒。</p><a class="product-link" href="https://www.012s.com.tw/products/qcc3%E4%BB%B6%E7%B5%84" target="_blank" rel="noopener noreferrer" aria-label="前往 QCC 官網商品頁（另開分頁）">前往官網商品頁 ↗</a></figure>
+      <figure><div class="portrait"><img src="assets/products/sirt-plus10-sample-v1.png" alt="SIRT+10 紫色瓶裝遊戲道具" width="1254" height="1254"></div><figcaption>SIRT+10</figcaption><p class="effect">遊戲效果<b>生命＋1</b></p><p class="details">立即增加 1 條生命，<br>生命上限為 5 條。</p><a class="product-link" href="https://www.012s.com.tw/products/sirt8-1" target="_blank" rel="noopener noreferrer" aria-label="前往 SIRT 官網商品頁（另開分頁）">前往官網商品頁 ↗</a></figure>
+    </section>
+  </main>
+</body>
+</html>

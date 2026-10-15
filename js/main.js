@@ -11,6 +11,8 @@
   const actions = {
     start(mode) { input.clear(); accumulator = 0; game.start(mode); ui.update(); },
     launch() { game.launch(); ui.update(); },
+    cast() { game.castUltimate(); ui.update(); },
+    primary() { if (game.state === 'waiting') game.launch(); else game.castUltimate(); ui.update(); },
     resume() { accumulator = 0; game.resume(); ui.update(); },
     togglePause() {
       input.clear(); accumulator = 0;
@@ -22,7 +24,7 @@
     home() { input.clear(); accumulator = 0; game.home(); ui.update(); },
   };
 
-  input = new Input(canvas, game, { launch: actions.launch, pause: actions.togglePause });
+  input = new Input(canvas, game, { primary: actions.primary, pause: actions.togglePause });
   ui = new UI(game, actions);
   ui.update();
 

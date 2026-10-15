@@ -3,7 +3,7 @@
   const { CONFIG, clamp } = BB;
 
   class Input {
-    constructor(canvas, game, { launch, pause }) {
+    constructor(canvas, game, { primary, pause }) {
       this.keys = new Set(); this.pointerId = null; this.targetX = null; this.dragOffset = 0;
       this.canvas = canvas; this.game = game;
       window.addEventListener('keydown', event => {
@@ -16,7 +16,7 @@
         if (event.code === 'ArrowLeft' || event.code === 'ArrowRight') {
           this.targetX = null; this.keys.add(event.code);
         }
-        if (!event.repeat && event.code === 'Space') launch();
+        if (!event.repeat && event.code === 'Space') primary();
         if (!event.repeat && event.code === 'Escape') pause();
       });
       window.addEventListener('keyup', event => this.keys.delete(event.code));

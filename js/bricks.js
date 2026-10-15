@@ -5,15 +5,18 @@
   // Complete the whole damage queue before the engine considers a level clear.
   // Mark a destroyed brick before enqueueing neighbors, so cyclic explosions
   // cannot score twice or spawn duplicate balls / items.
-  function damageBrick(game, target, offset = game.descentOffset) {
+  function damageBrick(game, target, offset = game.descentOffset, budget = null) {
     const queue = [target];
     const cells = new Map(game.bricks.map(brick => [`${brick.row}:${brick.col}`, brick]));
     for (let i = 0; i < queue.length; i++) {
+      if (budget && budget.remaining <= 0) break;
       const brick = queue[i];
       if (!brick || brick.destroyed || brick.type === 'S') continue;
-      brick.hp--;
+      if (budget && brick === target) brick.hp = 0; // Direct lightning also defeats reinforced bricks.
+      else brick.hp--;
       if (brick.hp > 0) continue;
       brick.destroyed = true;
+      if (budget) { budget.remaining--; budget.destroyed++; }
       game.score += CONFIG.pointsPerBrick;
       game.destroyedCount++;
       game.addFragments(brick, offset);

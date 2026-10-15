@@ -3,16 +3,16 @@
   const { CONFIG } = BB;
 
   const LEVELS = [
-    { name: '初次爆破', rows: ['........', '........', '..BBBB..', '.BBXXBB.', '..BOBB..', '...BB...', '........'] },
-    { name: '連鎖狂歡', rows: ['........', '.BBBBBB.', 'BBXBBXBB', 'BBBBBBBB', 'BBXBBXBB', '.BBOBBB.', '........'] },
-    { name: '解放小球', rows: ['........', '.BBBBBB.', 'BOBBBOBB', 'BBBBBBBB', 'BBXBBXBB', '.BBOBBB.', '........'] },
-    { name: '堅固防線', rows: ['..HHHH..', '.BBBBBB.', 'BBXBBXBB', 'BBBBBBBB', 'BBBOBBBB', '........', '........'] },
-    { name: '道具驚喜', rows: ['........', '.BBHHBB.', 'BBDBBDBB', 'BBBBBBBB', 'BBXBBXBB', '.BBOBBB.', '........'] },
-    { name: '鋼鐵障礙', rows: ['........', 'BBSSSSBB', 'BBBBBBBB', 'BBXBBXBB', 'BBBOBBBB', '........', '........'] },
-    { name: '爆破迷宮', rows: ['HHHHHHHH', 'BBSSSSBB', 'BBXBBXBB', 'SBBBBBBS', 'BBBOBBBB', '........', '........'] },
-    { name: '多球派對', rows: ['.BBBBBB.', 'BOBBBOBB', 'BBXBBXBB', 'BDBBBDBB', 'BOBBBOBB', 'BBBBBBBB', '........'] },
-    { name: '最後防線', rows: ['HHHHHHHH', 'BBSSSSBB', 'BBHBBHBB', 'BSXBBXSB', 'BBDBBDBB', 'BBBOBBBB', '........'] },
-    { name: '最終挑戰', rows: ['HHHHHHHH', 'BBXSSXBB', 'BBHBBHBB', 'SBOBBOBS', 'BBXBBXBB', 'BDBBBDBB', 'HHBBBBHH'] },
+    { name: '初次爆破', rows: ['........', '........', '..DBBD..', '.DBXXBD.', '..DOBD..', '...BB...', '........'] },
+    { name: '連鎖狂歡', rows: ['........', '.DBBBBD.', 'BBXBBXBB', 'BDBBBBDB', 'BBXBBXBB', '.BDOBDB.', '........'] },
+    { name: '解放小球', rows: ['........', '.DBBBBD.', 'BOBBBOBB', 'BBDBBDBB', 'BBXBBXBB', '.DBOBBD.', '........'] },
+    { name: '堅固防線', rows: ['..HHHH..', '.DBBBBD.', 'DBXBBXBD', 'BBBBBBBB', 'BDBOBBDB', '........', '........'] },
+    { name: '道具驚喜', rows: ['........', '.DBHHBD.', 'BBDBBDBB', 'BBBBBBBB', 'DBXBBXBD', '.BBOBBB.', '........'] },
+    { name: '鋼鐵障礙', rows: ['........', 'DBSSSSBD', 'BBDBBDBB', 'BBXBBXBB', 'BDBOBBDB', '........', '........'] },
+    { name: '爆破迷宮', rows: ['HHHHHHHH', 'DBSSSSBD', 'BDXBBXDB', 'SBDBBDBS', 'BBBOBBBB', '........', '........'] },
+    { name: '多球派對', rows: ['.DBBBBD.', 'BOBBBOBB', 'DBXBBXBD', 'BDBBBDBB', 'BOBBBOBB', 'BBBBBBBB', '........'] },
+    { name: '最後防線', rows: ['HHHHHHHH', 'DBSSSSBD', 'BBHBBHBB', 'BSXDDXSB', 'BBDBBDBB', 'BBBOBBBB', '........'] },
+    { name: '最終挑戰', rows: ['HHHHHHHH', 'DBXSSXBD', 'BDHBBHDB', 'SBOBBOBS', 'BBXBBXBB', 'BDBBBDBB', 'HHBBBBHH'] },
   ];
 
   function templateFor(level) { return LEVELS[(level - 1) % LEVELS.length]; }
@@ -31,6 +31,14 @@
         color: type === 'S' ? CONFIG.visuals.obstacle : type === 'H' ? CONFIG.visuals.reinforced : CONFIG.visuals.colors[(r + c) % 4],
       });
     }));
+    // Each template has six D bricks. Spread one guaranteed drop of each
+    // product through the layout; the other two keep the usual random pool.
+    const itemBricks = bricks.filter(brick => brick.type === 'D');
+    const products = CONFIG.powerups.positive;
+    for (let index = 0; index < products.length; index++) {
+      const slot = Math.round(index * (itemBricks.length - 1) / (products.length - 1));
+      itemBricks[slot].guaranteedPowerup = products[(index + level - 1) % products.length];
+    }
     return bricks;
   }
 

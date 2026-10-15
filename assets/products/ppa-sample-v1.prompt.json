@@ -1,0 +1,16 @@
+{
+  "mode": "built-in image_gen",
+  "generatedOn": "2026-10-15",
+  "file": "ppa-sample-v1.png",
+  "references": [
+    {
+      "role": "product design",
+      "file": "C:/Users/User/Desktop/PPA說明書製作/概念圖.png"
+    },
+    {
+      "role": "rendering style",
+      "file": "assets/pink/pink-idle.png"
+    }
+  ],
+  "prompt": "Use case: product-mockup.\nAsset type: ONE transparent PNG game pickup sprite, PPA moisturizer sample v1.\nInput image 1: product-design reference. Extract and reinterpret ONLY the PPA bottle from the provided concept illustration. Input image 2: style reference ONLY, the existing Pink companion mascot. Do not include the mascot itself.\nPrimary request: create a single upright, front-facing PPA moisturizing pump bottle as a polished, rounded soft-3D game item matching the glossy toy-like rendering of Pink. Preserve the reference product's white cylindrical body with gently rounded shoulders and base, white pump under a tall transparent protective cap, clear pump silhouette, cool pale-blue shading, and navy-blue PPA label. Keep proportions recognizably related to the reference, slightly simplify and broaden the body for legibility at game pickup sizes. Emphasize a strong clean bottle silhouette, readable cap edges, broad smooth highlights and controlled soft shading.\nText (verbatim): \"PPA\", large dark navy serif capitals centered across the bottle, exactly P P A. Below, keep one simplified navy line-art jellyfish emblem based on the product reference. No other text or claims. Make the PPA label prominent enough for reduced-size viewing.\nComposition/framing: square canvas, complete single bottle centered, vertical not tilted, bottle occupies about 88% of canvas height; balanced modest transparent padding. Front face unobstructed.\nScene/backdrop: GENUINELY TRANSPARENT background, alpha channel, no floor, no cast shadow outside the bottle, no checkerboard pattern painted in.\nMaterials: pearly white smooth body, glossy soft rounded plastic, transparent cap with pale-blue rim definition; same friendly polished 3D illustration finish as Pink, not pixel art, not photorealism.\nConstraints: one bottle only, no mascot next to bottle, no floating water droplets, no plants, no bubbles, no scene, no additional products, no limbs or face on bottle, no invented branding or slogans. Retain original PPA product identity."
+}

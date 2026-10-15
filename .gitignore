@@ -2,3 +2,6 @@
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+# Generated verification screenshots and reports
+/output/

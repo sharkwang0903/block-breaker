@@ -1,0 +1,20 @@
+{
+  "mode": "built-in image_gen",
+  "generatedOn": "2026-10-15",
+  "file": "qcc-sample-v1.png",
+  "references": [
+    {
+      "role": "product design",
+      "file": "C:\\Users\\User\\Desktop\\Codex\\back\\assets\\products\\qcc.png"
+    },
+    {
+      "role": "approved product style",
+      "file": "assets/products/ppa-sample-v1.png"
+    },
+    {
+      "role": "mascot style",
+      "file": "assets/pink/pink-idle.png"
+    }
+  ],
+  "prompt": "Use case: style-transfer.\nAsset type: ONE standalone transparent PNG product sprite for a branded brick-breaker game, product sample v1.\nInput image 1 is the exact product-design reference to reinterpret from pixel art into smooth soft-3D illustration. Input image 2 is the APPROVED PPA product sample: match its polished rounded rendering, broad controlled highlights, cool-edged shading, clean game asset silhouette. Input image 3 is the approved Pink companion: style reference ONLY, do not add the mascot beside the product.\nCreate one full product, upright front view, centered on a square canvas, occupying about 88-92% of canvas height with balanced transparent margins. Keep source packaging proportions recognizable. It must remain recognizable when scaled into a 64x64 pixel frame. Retain primary color blocks and make the exact product name large, clean and high contrast, without fine print.\nGenuinely transparent background with alpha, no floor, no cast shadow outside object, no painted checkerboard, no scene, no props, no floating particles. Rounded glossy toy-like finish compatible with PPA and Pink, NOT pixel art and NOT photorealism. No new branding, slogan, claims, or other text. No limbs or face on the package except a mascot already PRINTED in the design reference. Do not include PPA bottle or Pink character as separate objects.\nProduct: QCC. Preserve the source's short wide clear cylindrical supplement bottle, softly rounded shoulders, wide silver screw cap and emerald-green wraparound label. Cap has a simple rounded rim and broad smooth metallic highlight with minimal grooves. Green label covers most of bottle body, clear shoulder and bottom rim remain visible. Exact text \"QCC\" centered large in white, clean bold sans-serif letters on ONE LINE. Keep label otherwise blank, as in source. Preserve simple transparent glass feel without overly busy refractions. No jellyfish logo on this bottle, no new badges, no pills outside bottle. This and SIRT+10 should share the same bottle shape and cap design."
+}

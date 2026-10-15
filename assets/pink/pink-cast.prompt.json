@@ -1,0 +1,7 @@
+{
+  "mode": "built-in image_gen",
+  "generatedOn": "2026-10-15",
+  "file": "pink-cast.png",
+  "reference": "assets/pink/pink-cheer.png",
+  "prompt": "Use case: identity-preserve.\nAsset type: ONE transparent PNG, Pink jellyfish special-attack casting pose for an existing game.\nEdit target: supplied Pink company mascot. Keep the exact Pink identity, glossy rounded soft-3D rendering, hot pink cap with identical white-edged four-petal clover emblem, cream-white body, pink cheeks, burgundy face, short scalloped tentacles, original proportions, material and colors.\nChange ONLY the pose and facial expression: both short arms lifted high to the upper sides, actively summoning lightning; both simple burgundy oval eyes OPEN and focused but friendly, broad confident happy smile. Energetic, adorable and supportive. A visibly distinct casting pose from the existing closed-eye celebration. No fingers, no human limbs, no angry eyebrows.\nFront view, entire character centered on square canvas, body scale and baseline consistent with reference, 10% transparent padding, no cropped arms or tentacles.\nGENUINELY TRANSPARENT background with alpha. No ground, cast shadow, text, watermark, costume, props, or additional characters. No lightning or aura painted into this sprite: the game draws those separately. Preserve emblem exactly."
+}

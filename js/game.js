@@ -8,6 +8,8 @@
       this.state = 'home';
       this.balls = []; this.bricks = []; this.drops = []; this.effects = {}; this.particles = [];
       this.message = ''; this.runId = 0;
+      this.pickupSerial = 0; this.pickupNotice = null;
+      this.energy = 0; this.ultimate = null; this.ultimateBolts = []; this.ultimateSerial = 0;
     }
 
     start(mode) {
@@ -17,6 +19,8 @@
       this.paddle = { x: CONFIG.width / 2, y: CONFIG.paddle.y, width: CONFIG.paddle.width, height: CONFIG.paddle.height };
       this.balls = []; this.drops = []; this.effects = {}; this.particles = [];
       this.nextBallId = 1; this.hiddenSerial = 0; this.message = '';
+      this.pickupSerial = 0; this.pickupNotice = null;
+      this.energy = 0; this.ultimate = null; this.ultimateBolts = []; this.ultimateSerial = 0;
       this.bricks = createBricks(1); this.descentOffset = 0;
       this.notice = CONFIG.visuals.levelNoticeDuration;
       this.state = 'waiting'; this.makeWaitingBall();
@@ -27,6 +31,9 @@
       this.balls.push(ball);
       return ball;
     }
+
+    chargeEnergy(amount) { BB.chargeEnergy(this, amount); }
+    castUltimate() { return BB.castUltimate(this); }
 
     makeWaitingBall() {
       this.makeBall(this.paddle.x, this.paddle.y - CONFIG.ball.radius - 3, 0, 0);
@@ -74,9 +81,10 @@
       this.resumeState = this.state; this.state = 'paused';
     }
     resume() { if (this.state === 'paused') this.state = this.resumeState; }
-    home() { this.state = 'home'; }
+    home() { BB.endUltimate(this); this.state = 'home'; }
 
     advanceLevel() {
+      BB.endUltimate(this);
       if (this.mode === 'normal' && this.level === LEVELS.length) { this.finish(true); return; }
       this.level++;
       this.bricks = createBricks(this.level); // Removes every old obstacle.
@@ -87,7 +95,7 @@
       this.message = `第 ${this.level} 關`;
     }
 
-    finish(won) { this.won = won; this.state = 'result'; this.message = won ? '通關成功' : '挑戰結束'; }
+    finish(won) { BB.endUltimate(this); this.won = won; this.state = 'result'; this.message = won ? '通關成功' : '挑戰結束'; }
 
     step(dt, input = {}) {
       if (this.state !== 'playing' && this.state !== 'waiting') return;
@@ -112,6 +120,7 @@
         updateDrops(this, dt, startX, this.paddle.x);
       }
       this.descentOffset = Math.min(0, oldOffset + descentSpeed * movingTime);
+      if (wasPlaying) BB.tickUltimate(this, dt);
       if (!wasPlaying) for (const ball of this.balls) { ball.x = this.paddle.x; ball.y = this.paddle.y - ball.radius - 3; }
 
       for (const p of this.particles) { p.x += p.vx * dt; p.y += p.vy * dt; p.remaining -= dt; }

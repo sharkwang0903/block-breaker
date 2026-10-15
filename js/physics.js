@@ -138,6 +138,7 @@
         continue;
       }
       if (next.kind === 'paddle') {
+        game.chargeEnergy(CONFIG.ultimate.paddleEnergy);
         const center = paddleStart + paddleVelocity * elapsed;
         const relative = clamp((ball.x - center) / (game.paddle.width / 2), -1, 1);
         const angle = relative * CONFIG.paddle.maxAngle;

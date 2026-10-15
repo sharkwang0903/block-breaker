@@ -58,6 +58,11 @@
   class Renderer {
     constructor(canvas) {
       this.canvas = canvas; this.ctx = canvas.getContext('2d');
+      this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      this.productImages = new Map(Object.entries(CONFIG.powerups.products).map(([type, product]) => {
+        const image = new Image(); image.src = product.image;
+        return [type, image];
+      }));
       this.resize();
       this.observer = new ResizeObserver(() => this.resize()); this.observer.observe(canvas);
     }
@@ -67,17 +72,50 @@
       this.canvas.height = Math.round(CONFIG.height * scale);
       this.ctx.setTransform(this.canvas.width / CONFIG.width, 0, 0, this.canvas.height / CONFIG.height, 0, 0);
     }
+    drawLightning(game) {
+      const ctx = this.ctx;
+      for (const bolt of game.ultimateBolts) {
+        const progress = 1 - bolt.remaining / CONFIG.ultimate.boltLifetime;
+        ctx.save();
+        ctx.globalAlpha = this.reducedMotion.matches ? .65 : Math.min(1, bolt.remaining / .1);
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.beginPath(); ctx.moveTo(bolt.x, 0);
+        if (!this.reducedMotion.matches) {
+          const segments = Math.max(4, Math.ceil(bolt.y / 24));
+          for (let i = 1; i < segments; i++) {
+            const wobble = Math.sin(i * 13.7 + bolt.x * .37 + game.ultimateSerial * 3) * 18;
+            ctx.lineTo(bolt.x + wobble, bolt.y * i / segments);
+          }
+        }
+        ctx.lineTo(bolt.x, bolt.y);
+        ctx.strokeStyle = '#ed9bff'; ctx.lineWidth = this.reducedMotion.matches ? 2 : 4;
+        ctx.shadowColor = '#ff80d1'; ctx.shadowBlur = this.reducedMotion.matches ? 0 : 12; ctx.stroke();
+        ctx.shadowBlur = 0; ctx.strokeStyle = '#fff4ff'; ctx.lineWidth = 1.2; ctx.stroke();
+        if (!this.reducedMotion.matches) {
+          ctx.beginPath(); ctx.arc(bolt.x, bolt.y, 8 + progress * 18, 0, Math.PI * 2);
+          ctx.strokeStyle = '#ffc7f4'; ctx.lineWidth = 1.5; ctx.stroke();
+        }
+        ctx.restore();
+      }
+    }
     draw(game) {
       const ctx = this.ctx;
       ctx.clearRect(0, 0, CONFIG.width, CONFIG.height);
       ctx.fillStyle = '#000'; ctx.fillRect(0, 0, CONFIG.width, CONFIG.height);
       for (const brick of game.bricks) if (!brick.destroyed) drawBrick(ctx, brick, game.descentOffset);
+      this.drawLightning(game);
       for (const particle of game.particles) {
         ctx.globalAlpha = particle.remaining / CONFIG.visuals.particleLifetime;
         ctx.fillStyle = particle.color; ctx.fillRect(particle.x - 1.5, particle.y - 1.5, 3, 3);
       }
       ctx.globalAlpha = 1;
       for (const drop of game.drops) {
+        const image = this.productImages.get(drop.type);
+        if (image?.complete && image.naturalWidth > 0) {
+          const size = CONFIG.powerups.productSize;
+          ctx.drawImage(image, drop.x - size / 2, drop.y - size / 2, size, size);
+          continue;
+        }
         const effect = CONFIG.powerups.effects[drop.type], size = CONFIG.powerups.size;
         rounded(ctx, drop.x - size / 2, drop.y - size / 2, size, size, 5);
         ctx.fillStyle = effect.negative ? '#302021' : '#16242b'; ctx.fill();

@@ -1,0 +1,20 @@
+{
+  "mode": "built-in image_gen",
+  "source": "User-provided jellyfish-pink.png",
+  "generatedOn": "2026-10-15",
+  "common": "Use case: identity-preserve. Edit target: the supplied original company Pink jellyfish PNG. Create ONE game mascot pose as a separate PNG with genuinely transparent background. Preserve the exact recognizable pink jellyfish identity: glossy soft 3D toy rendering, hot pink cap with the same four-petal white-edged clover emblem, cream-white face and body, rosy cheeks, burgundy facial features, short scalloped pink tentacles. Front view, full body centered, square canvas, consistent original proportions and scale, generous 10% transparent margin, no cropping. Preserve logo geometry and colors. No text, no accessories, no ground plane, no background, no cast shadow outside character, no extra characters. ",
+  "poses": [
+    {
+      "file": "pink-idle.png",
+      "prompt": "Change only face and arm pose: both simple vertical oval eyes open, gentle small smiling mouth, arms comfortably open to sides. Calm friendly companion resting pose. Keep all other character details faithful."
+    },
+    {
+      "file": "pink-cheer.png",
+      "prompt": "Change only face and arm pose: both arms raised enthusiastically, both eyes curved upward happy closed arcs, big happy smiling mouth. A cheerful encouragement and victory pose. Keep all other character details faithful."
+    },
+    {
+      "file": "pink-oops.png",
+      "prompt": "Change only face and arm pose: both oval eyes open a little wider and small rounded surprised mouth, both hands lifted close to cheeks. Cute mild surprise when a ball is missed, warm and supportive, no tears or distress. Keep all other character details faithful."
+    }
+  ]
+}

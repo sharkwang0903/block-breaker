@@ -1,0 +1,20 @@
+{
+  "mode": "built-in image_gen",
+  "generatedOn": "2026-10-15",
+  "file": "bf01-plus1-sample-v1.png",
+  "references": [
+    {
+      "role": "product design",
+      "file": "C:\\Users\\User\\Desktop\\Codex\\back\\assets\\products\\bf01+1.png"
+    },
+    {
+      "role": "approved product style",
+      "file": "assets/products/ppa-sample-v1.png"
+    },
+    {
+      "role": "mascot style",
+      "file": "assets/pink/pink-idle.png"
+    }
+  ],
+  "prompt": "Use case: style-transfer.\nAsset type: ONE standalone transparent PNG product sprite for a branded brick-breaker game, product sample v1.\nInput image 1 is the exact product-design reference to reinterpret from pixel art into smooth soft-3D illustration. Input image 2 is the APPROVED PPA product sample: match its polished rounded rendering, broad controlled highlights, cool-edged shading, clean game asset silhouette. Input image 3 is the approved Pink companion: style reference ONLY, do not add the mascot beside the product.\nCreate one full product, upright front view, centered on a square canvas, occupying about 88-92% of canvas height with balanced transparent margins. Keep source packaging proportions recognizable. It must remain recognizable when scaled into a 64x64 pixel frame. Retain primary color blocks and make the exact product name large, clean and high contrast, without fine print.\nGenuinely transparent background with alpha, no floor, no cast shadow outside object, no painted checkerboard, no scene, no props, no floating particles. Rounded glossy toy-like finish compatible with PPA and Pink, NOT pixel art and NOT photorealism. No new branding, slogan, claims, or other text. No limbs or face on the package except a mascot already PRINTED in the design reference. Do not include PPA bottle or Pink character as separate objects.\nProduct: BF01+1. Keep the bright orange drawstring pouch, two short orange loop handles at top, gathered opening, drawstrings with simple knots at both sides, soft cloth folds and broad rounded rectangular bottom. Preserve the PRINTED orange/cream jellyfish mascot in the center, with its white-edged four-petal cap motif, winking happy face and short tentacles; it is printed on the pouch. Under the mascot, exact text \"BF01+1\" (B F digit ZERO digit ONE + digit ONE), large cream-white clean rounded sans-serif lettering on ONE LINE. Keep a few tiny simplified grain shapes at bottom left from the source, subordinate to product name. Orange is saturated warm tangerine, not brown. Avoid heavy black outlines, blocky pixel edges, excessive fabric detail, and any additional accessories."
+}
