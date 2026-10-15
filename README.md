@@ -1,4 +1,4 @@
-# Block Breaker｜打磚塊
+# 水母打磚塊
 
 依照 `GAME_SPEC.md` v1.0 製作的網頁打磚塊遊戲，使用原生 HTML、CSS、JavaScript 與 Canvas 2D。JavaScript 按功能分檔，沒有第三方套件、遊戲引擎或建置步驟。
 

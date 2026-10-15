@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#000000">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%233989D4' d='M2 5h12v9H2z'/%3E%3Cpath fill='%23E8BE50' d='M18 5h12v9H18z'/%3E%3Cpath fill='%23D85B59' d='M2 18h12v9H2z'/%3E%3Cpath fill='%2342A987' d='M18 18h12v9H18z'/%3E%3C/svg%3E">
-  <title>Block Breaker｜打磚塊</title>
+  <title>水母打磚塊</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
     <section id="home" class="home" aria-labelledby="home-title">
       <div class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <p class="eyebrow">A LITTLE BREAK. A LOT OF BRICKS.</p>
-      <h1 id="home-title">BLOCK<br><span>BREAKER</span><b>打磚塊</b></h1>
+      <h1 id="home-title" aria-label="水母打磚塊">水母<br><span>打磚塊</span></h1>
       <p class="intro">接住每一次反彈，打開下一個可能。<br>和 Pink 一起挑戰，商品道具助你破關。</p>
       <div class="mode-buttons">
         <button id="normal-mode" class="mode primary"><span>正常模式<small>10 個關卡，逐一擊破</small></span><span aria-hidden="true">↗</span></button>
@@ -25,7 +25,7 @@
 
     <section id="game-screen" class="game-screen" hidden aria-label="遊戲">
       <header class="game-header">
-        <div class="wordmark">BLOCK BREAKER<span id="mode-label">正常模式</span></div>
+        <div class="wordmark">水母打磚塊<span id="mode-label">正常模式</span></div>
         <button id="pause-button" class="icon-button" aria-label="暫停遊戲" title="暫停（Esc）">Ⅱ</button>
       </header>
       <div class="hud" aria-live="off">
@@ -35,7 +35,7 @@
       </div>
       <div class="play-layout">
       <div id="board-wrap" class="board-wrap">
-        <canvas id="game-canvas" width="480" height="640" tabindex="0" aria-label="打磚塊遊戲區。方向鍵移動、空白鍵發球或滿能量時發動水母電擊、Esc 暫停；觸控拖曳移動。"></canvas>
+        <canvas id="game-canvas" width="480" height="640" tabindex="0" aria-label="水母打磚塊遊戲區。方向鍵移動、空白鍵發球或滿能量時發動水母電擊、Esc 暫停；觸控拖曳移動。"></canvas>
         <div id="pickup-toast" class="pickup-toast" hidden aria-hidden="true"><span id="pickup-text"></span></div>
         <div id="overlay" class="overlay" hidden>
           <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-description">
